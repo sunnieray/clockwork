@@ -2,6 +2,7 @@ var studytime = 12;
 var codingtime = 6;
 var naptime = 3;
 var noon = 12;
+var partytime;
 
 //getting it to show current time on webpage
 var showCurrentTime = function () 
@@ -58,20 +59,26 @@ var updateClock = function()
 
   var timeEventJS = document.getElementById("timeEvent");
   var clockImage = document.getElementById("clockImage");
-  
-  if (time == studytime)
+
+  if (time == partytime)
   {
-    image = "https://images3.memedroid.com/images/UPLOADED538/5be88fed751a2.jpeg";
+    image = "https://cdn.webshopapp.com/shops/117600/files/188080037/studio-stationery-gold-foil-poster-work-work-work.jpg";
+    messageText = "Let's put in work!";
+  }
+
+  else if (time == studytime)
+  {
+    image = "http://static1.squarespace.com/static/5b0b86c39772ae8185d6f50c/5b274998352f53967a795eaf/5b7de7bb4d7a9ca6d5a6bc1d/1535434800703/Screen+Shot+2018-08-22+at+4.18.10+PM+copy.png?format=1500w";
     messageText = "Let's Study!";
   }
   else if (time == codingtime)
   {
-    image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesE8eekMNuDoQNCy3TE1qGvz80grUmoEHFGaekyc1TDKjDk3k";
+    image = "https://www.computing.co.uk/w-images/356457d6-48c3-47c8-a5aa-eec0cbb45cc7/0/computercode-580x358.jpeg";
     messageText = "Let's Code!";
   }
   else if (time == naptime)
   {
-    image = "https://i0.wp.com/asc-mbs.com/wp-content/uploads/2017/03/Nap-Time-l.jpg?ssl=1";
+    image = "https://i.pinimg.com/736x/dc/c8/6a/dcc86a8b0828e6ea4356b3ab258639b4.jpg";
     messageText = "Sleep tight!";
   }
   else {
@@ -90,6 +97,29 @@ updateClock();
 //update per second
 var oneSecond = 1000;
 setInterval(updateClock, oneSecond);
+
+//party button to work
+var partyButton = document.getElementById("partyTimeButton");
+
+var partyEvent = function()
+{
+    if (partytime < 0) 
+    {
+        partytime = new Date().getHours();
+        partyTimeButton.innerText = "Done Working!";
+        //partyTimeButton.style.backgroundColor = "#0A8DAB";
+    }
+    else
+    {
+        partytime = -1;
+        partyTimeButton.innerText = "Lets work!";
+        partyTimeButton.style.backgroundColor = "#222";
+    }
+};
+
+partyButton.addEventListener("click", partyEvent);
+partyEvent(); 
+
 
 // Activates coding selector
 var codingTimeSelector =  document.getElementById("codingTimeSelector");
